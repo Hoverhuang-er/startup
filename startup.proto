@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package your_public_libs;
+option go_package = "pkg/your_public_libs/pb";
+option java_package = "com.your_public_libs.pb";
+option py_generic_services = true;
+option java_generic_services = true;
+option csharp_namespace = "YourPublicLibs.Pb";
+option cc_generic_services = true;
+import "google/protobuf/any.proto";
+
+message Sample {
+    string name = 1;
+    int32 age = 2;
+    google.protobuf.Any any = 3;
+}
+
+message Response {
+    int32 code = 1;
+    string message = 2;
+    google.protobuf.Any any = 3;
+}
+
+service Startup {
+    rpc Hello(Sample) returns (Response) {}
+}
